@@ -1,12 +1,11 @@
-import Contact from '../components/Contact'
 import React from 'react';
-import YoutubeEmbed from "../components/Youtube/index";
+import Contact from '../components/Contact'
 
 function App() {
     return (
         <>
-        <Contact/>
+          <Contact/>
         </>
     );
   }
-  export default App;
+export default App;

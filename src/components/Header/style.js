@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
-
+import {Carousel} from '3d-react-carousal';
 export const Container = styled.div `
 display: initial;
 `;
@@ -19,6 +19,7 @@ text-align: center;
 export const Navbar = styled.nav `
 display: flex;
 justify-content: center;
+margin: 0 0 5vw 0;
 @media screen and (max-width: 768px){
    flex-direction: column;
 }
@@ -26,7 +27,7 @@ justify-content: center;
 export const Linken = styled(Link) `
 font-size: 2.1vw;
 font-weigth: bold;
-margin: 0 6vw 0 6vw;
+margin: 1.5vw 6vw 0 6vw;
 color: white;
 text-decoration: none;
 &:hover {
@@ -39,10 +40,37 @@ text-decoration: none;
    text-align: center;
 }
 `;
-export const ImgDiv = styled.div `
-display: flex;
-justify-content: center;
+export const ImageCrousel = styled.img `
+   min-width: 19vw;
+   min-height: 19vw;
+   max-width: 19vw;
+   max-height: 19vw;
+   justify-content: center;
+   @media screen and (max-width: 768px){
+      min-width: 54vw;
+      min-height: 54vw;
+      max-width: 54vw;
+      max-height: 54vw;
+   } 
 `;
-export const ImageBanner = styled.img `
-width: 35vw;
+export const Carous = styled.h2 `
+   min-width: 16vw;
+   min-height: 16vw;
+   max-width: 16vw;
+   max-height: 16vw;
+   color: white;
+   background: gray;
+   font-size: 1.8vw;
+   justify-content: center;
+   text-align: center;
+   @media screen and (max-width: 768px){
+      min-width: 46vw;
+      min-height: 46vw;
+      max-width: 46vw;
+      max-height: 46vw;
+      font-size: 4.8vw;
+   }     
+`;
+export const Carousels = styled(Carousel) `
+   padding: 3vw;    
 `;

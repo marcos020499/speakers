@@ -1,56 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import  firebase  from '../firebase/firebase';
 import 'font-awesome/css/font-awesome.min.css';
 import { Link } from 'react-router-dom';
 import { Image, Card, P, H2, H4, ImageC, ImageCard, LinkTitle,  Linken } from './style'
-class index extends Component {
-  constructor(props) {
-    super(props);
-    this.ref = firebase.firestore().collection('boards');
-    this.unsubscribe = null;
-    this.state = {
-      boards: []
-    };
-  }
 
-  onCollectionUpdate = (querySnapshot) => {
-    const boards = [];
-    querySnapshot.forEach((doc) => {
-      const { name, description, nationality, image, information, GitHub } = doc.data();
-      boards.push({
-        key: doc.id,
-        doc, // DocumentSnapshot
-        name,
-        description,
-        nationality,
-        image,
-        information,
-        GitHub
+const useItems = () => {
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    firebase
+      .firestore() //access firestore
+      .collection("boards") //access "items" collection
+      .onSnapshot(snapshot => {
+        //You can "listen" to a document with the onSnapshot() method.
+        const listItems = snapshot.docs.map(doc => ({
+          //map each document into snapshot
+          id: doc.id, //id and data pushed into items array
+          ...doc.data() //spread operator merges data to id.
+        }));
+        setItems(listItems); //items is equal to listItems
       });
-    });
-    this.setState({
-      boards
-   });
-  }
-
-  componentDidMount() {
-    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-  }
-
-  render() {
+  }, []);
+  return items;
+};
+  const ItemList = () => {
+  const listItem = useItems();
     return (
       <div class="container">
         <H2>Program Committee</H2>
           {
-            this.state.boards.map((board)=>(
+            listItem.map((board)=>(
             <Card>
-              <Link to={`/show/${board.key}`}>
+              <Link to={`/show/${board.id}`}>
                 <ImageCard>
                   <ImageC src={board.image} alt="productImage" />
                 </ImageCard>
                 <LinkTitle>{board.name}</LinkTitle>
                 <H4>{board.nationality}</H4>
-                <Linken href={board.GitHub} className='fa fa-github' style={{fontSize: '2.4vw'}}></Linken>
+                <Linken href={board.GitHub} className='fa fa-github'></Linken>
               </Link>
             </Card>
             ))
@@ -58,8 +44,6 @@ class index extends Component {
       </div>
     );
   }
-}
-
-export default index;
+export default ItemList;
 
 

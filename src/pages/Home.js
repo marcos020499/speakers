@@ -1,5 +1,6 @@
 import Home from '../components/Home'
 import React from 'react';
+import Suscribe from '../components/Suscribe'
 import YoutubeEmbed from "../components/Youtube/index";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
         <>
         <YoutubeEmbed embedId="SAIdyBFHfVU" />
         <Home/>
+        <Suscribe/>
         </>
     );
   }
