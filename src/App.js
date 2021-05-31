@@ -7,23 +7,23 @@ import Speakers from './pages/Speakers'
 import About from './pages/About'
 import React from 'react';
 import { createGlobalStyle } from 'styled-components'
-import {Route, BrowserRouter as Router} from "react-router-dom";
+import {Route, HashRouter, Switch} from "react-router-dom";
 
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
         <GlobalStyle/>
         <Header/>
-        <div>
+        <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/contact" component={Contact} />
           <Route path="/about" component={About} />
           <Route path="/speakers" component={Speakers} />
           <Route path="/show/:id" component={Detail} />
-        </div>
+        </Switch>
         <Footer/>
-    </Router>
+    </HashRouter>
   );
 }
 export default App;

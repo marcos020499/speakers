@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -10,6 +11,9 @@ module.exports = {
                 test: /\.[jt]sx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
+                options: {
+                    presets: ["@babel/preset-env", "@babel/preset-react"]
+                }
             },
             {
                 test: /\.css$/,
@@ -44,4 +48,5 @@ module.exports = {
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
     devtool: 'eval-source-map',
+    plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') })]
 }

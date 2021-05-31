@@ -3,7 +3,6 @@ import  firebase  from '../firebase/firebase';
 import 'font-awesome/css/font-awesome.min.css';
 import { Link } from 'react-router-dom';
 import { H2, ContainerSuscribe, ButtonSuscribe, Image, Linken, ButtonDiv, ImageContainer} from './style'
-import 'font-awesome/css/font-awesome.min.css';
 
 const useItems = (props) => {
   const {initialMinute = 30,initialSeconds = 49} = props;
