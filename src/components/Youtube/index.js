@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ContainerVideo } from './style'
+import { ContainerVideo } from "./style";
 const YoutubeEmbed = ({ embedId }) => (
   <ContainerVideo>
     <iframe
@@ -16,7 +16,7 @@ const YoutubeEmbed = ({ embedId }) => (
 );
 
 YoutubeEmbed.propTypes = {
-  embedId: PropTypes.string.isRequired
+  embedId: PropTypes.string.isRequired,
 };
 
 export default YoutubeEmbed;
